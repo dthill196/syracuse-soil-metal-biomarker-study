@@ -1,86 +1,39 @@
-Linking soil metal concentrations with children’s blood and urine
-biomarkers in Syracuse, NY
-================
+---
+title: "Linking soil metal concentrations with children’s blood and urine biomarkers in Syracuse, NY"
+output: github_document
+---
 
 ### Introduction
 
-This repository is associated with a research project investigating
-associations between blood and urine-metal concentrations in children in
-Syracuse, NY with concentrations of those same metals in the surrounding
-soils. This repository reviews a few different methods for interpolating
-soil concentrations from samples collected in the field to cover areas
-not sampled. Then, the samples can be linked with the coordinates for a
-particular participant. This repository is meant to document the methods
-used for interpolating soil data so that they can be adapted by other
-researchers.
+This repository is associated with a research project investigating associations between blood and urine-metal concentrations in children in Syracuse, NY with concentrations of those same metals in the surrounding soils. This repository reviews a few different methods for interpolating soil concentrations from samples collected in the field to cover areas not sampled. Then, the samples can be linked with the coordinates for a particular participant. This repository is meant to document the methods used for interpolating soil data so that they can be adapted by other researchers.
 
-The data used in this repo are aggregated from individual samples to
-maintain confidentiality. All data represent US Census tract means from
-their respective studies. The data in this repository are sample data
-only and do not represent any actual soil sample or blood sample
-results.
+The data used in this repo are aggregated from individual samples to maintain confidentiality. All data represent US Census tract means from their respective studies. The data in this repository are sample data only and do not represent any actual soil sample or blood sample results.
 
-For documentation on soil data collection, please see Griffith, D. A.;
-Johnson, D. L.; Hunt, A. The Geographic Distribution of Metals in Urban
-Soils: The Case of Syracuse, NY. GeoJournal 2009, 74 (4), 275–291.
-<https://doi.org/10.1007/s10708-008-9233-x>.
+For documentation on soil data collection, please see Griffith, D. A.; Johnson, D. L.; Hunt, A. The Geographic Distribution of Metals in Urban Soils: The Case of Syracuse, NY. GeoJournal 2009, 74 (4), 275–291. [https://doi.org/10.1007/s10708-008-9233-x](https://doi.org/10.1007/s10708-008-9233-x).
 
-**For documentation on collection of blood-metal data, please consult
-any of the publications below.**
+**For documentation on collection of blood-metal data, please consult any of the publications below.**
 
-- Castro, I. E.; Larsen, D. A.; Hruska, B.; Parsons, P. J.; Palmer, C.
-  D.; Gump, B. B. Variability in the Spatial Density of Vacant
-  Properties Contributes to Background Lead (Pb) Exposure in Children.
-  Environ. Res. 2019, 170, 463–471.
-  <https://doi.org/10.1016/j.envres.2018.12.069>.
+* Castro, I. E.; Larsen, D. A.; Hruska, B.; Parsons, P. J.; Palmer, C. D.; Gump, B. B. Variability in the Spatial Density of Vacant Properties Contributes to Background Lead (Pb) Exposure in Children. Environ. Res. 2019, 170, 463–471. [https://doi.org/10.1016/j.envres.2018.12.069](https://doi.org/10.1016/j.envres.2018.12.069).
 
-- Gump, B. B.; Dykas, M. J.; MacKenzie, J. A.; Dumas, A. K.; Hruska, B.;
-  Ewart, C. K.; Parsons, P. J.; Palmer, C. D.; Bendinskas, K. Background
-  Lead and Mercury Exposures: Psychological and Behavioral Problems in
-  Children. Environ. Res. 2017, 158, 576–582.
-  <https://doi.org/10.1016/j.envres.2017.06.033>.
+* Gump, B. B.; Dykas, M. J.; MacKenzie, J. A.; Dumas, A. K.; Hruska, B.; Ewart, C. K.; Parsons, P. J.; Palmer, C. D.; Bendinskas, K. Background Lead and Mercury Exposures: Psychological and Behavioral Problems in Children. Environ. Res. 2017, 158, 576–582. [https://doi.org/10.1016/j.envres.2017.06.033](https://doi.org/10.1016/j.envres.2017.06.033).
 
-- Hill, D. T.; Petroni, M.; Larsen, D. A.; Bendinskas, K.; Heffernan,
-  K.; Atallah-Yunes, N.; Parsons, P. J.; Palmer, C. D.; MacKenzie, J.
-  A.; Collins, M. B.; Gump, B. B. Linking Metal (Pb, Hg, Cd) Industrial
-  Air Pollution Risk to Blood Metal Levels and Cardiovascular
-  Functioning and Structure among Children in Syracuse, NY. Environ.
-  Res. 2021, 193, 110557.
-  <https://doi.org/10.1016/j.envres.2020.110557>.
+* Hill, D. T.; Petroni, M.; Larsen, D. A.; Bendinskas, K.; Heffernan, K.; Atallah-Yunes, N.; Parsons, P. J.; Palmer, C. D.; MacKenzie, J. A.; Collins, M. B.; Gump, B. B. Linking Metal (Pb, Hg, Cd) Industrial Air Pollution Risk to Blood Metal Levels and Cardiovascular Functioning and Structure among Children in Syracuse, NY. Environ. Res. 2021, 193, 110557. [https://doi.org/10.1016/j.envres.2020.110557](https://doi.org/10.1016/j.envres.2020.110557).
 
-Inspiration for the methods and much of the code used in this repository
-come from work previously shared by S. Wilke. Their original blog post
-is no longer accessible.
+Inspiration for the methods and much of the code used in this repository come from work previously shared by S. Wilke. Their original blog post is no longer accessible. 
 
-In addition, the combining of ordinary Kriging (OK) and triangular
-irregular network (TIN) was proposed by Wu et al. in 2011. Please see
-[their
-paper](https://link.springer.com/article/10.1007/s12665-010-0784-z) for
-more details on that process beyond what we present here.
+In addition, the combining of ordinary Kriging (OK) and triangular irregular network (TIN) was proposed by Wu et al. in 2011. Please see [their paper](https://link.springer.com/article/10.1007/s12665-010-0784-z) for more details on that process beyond what we present here. 
 
-Wu, C.; Wu, J.; Luo, Y.; Zhang, H.; Teng, Y.; DeGloria, S. D. Spatial
-Interpolation of Severely Skewed Data with Several Peak Values by the
-Approach Integrating Kriging and Triangular Irregular Network
-Interpolation. Environ. Earth Sci. 2011, 63 (5), 1093–1103.
-<https://doi.org/10.1007/s12665-010-0784-z>.
+Wu, C.; Wu, J.; Luo, Y.; Zhang, H.; Teng, Y.; DeGloria, S. D. Spatial Interpolation of Severely Skewed Data with Several Peak Values by the Approach Integrating Kriging and Triangular Irregular Network Interpolation. Environ. Earth Sci. 2011, 63 (5), 1093–1103. [https://doi.org/10.1007/s12665-010-0784-z](https://doi.org/10.1007/s12665-010-0784-z).
 
-Complete results and interpration of the data can be found with the
-publication associated with this repository. **Insert publication link
-when published**. Please use the following citation when referencing
-this repository.
 
-Dustin T. Hill, Michael Petroni, Vikrant Jandev, Nader Atallah-Yunes,
-Kestas Bendinskas, Lynn Brann, Kevin Heffernan, James A. MacKenzie,
-Christopher D. Palmer, Patrick J. Parsons, Mary B. Collins , and Brooks
-B. Gump. Title Linking soil metal concentrations with children’s blood
-and urine biomarkers in Syracuse NY. Poster presentation. Association of
-Environmental Studies and Sciences (AESS 2024) Low Carbon Virtual
-Conference. (June 2024). **Insert publication link when published and
-replace the conference citation with the full paper**.
+Complete results and interpration of the data can be found with the publication associated with this repository. **Insert publication link when published**. Please use the following citation when referencing this repository. 
+
+Dustin T. Hill, Michael Petroni, Vikrant Jandev, Nader Atallah-Yunes, Kestas Bendinskas, Lynn Brann, Kevin Heffernan, James A. MacKenzie, Christopher D. Palmer, Patrick J. Parsons,  Mary B. Collins , and Brooks B. Gump. Title Linking soil metal concentrations with children’s blood and urine biomarkers in Syracuse NY. Poster presentation. Association of Environmental Studies and Sciences (AESS 2024) Low Carbon Virtual Conference. (June 2024). **Insert publication link when published and replace the conference citation with the full paper**.
 
 ### Packages and data
 
-``` r
+```{r load data, include = TRUE, echo = TRUE, warning = FALSE, message = FALSE, results = 'hide'}
+
 # load packages
 library(sf)
 library(dplyr)
@@ -102,35 +55,31 @@ soil$sample_id <- seq(1:55)
 
 # participant data (coordinates)
 participant <- readRDS("data/pb_mean.rds")
+
 ```
 
-You will notice that the soil data has three fields in addition to the
-`sample_id`: `longitude`, `latitude` and `mean_pb_soil`, which is the
-average soil concentration in each census tract based on the data
-collected by Griffith et al. (2009).
+You will notice that the soil data has three fields in addition to the `sample_id`: `longitude`,  `latitude` and `mean_pb_soil`, which is the average soil concentration in each census tract based on the data collected by Griffith et al. (2009).
 
-``` r
+```{r head soil, include = TRUE, echo = TRUE}
+
 names(soil)
+
 ```
+The participant data has three fields as well with `mean_pb` representing the mean blood-Pb level for all participants from that census tract. Data are geocoded to the centroid of the census tract.
 
-    ## [1] "longitude"    "latitude"     "mean_pb_soil" "sample_id"
+```{r head participant, include = TRUE, echo = TRUE}
 
-The participant data has three fields as well with `mean_pb`
-representing the mean blood-Pb level for all participants from that
-census tract. Data are geocoded to the centroid of the census tract.
-
-``` r
 names(participant)
+
 ```
 
-    ## [1] "longitude" "latitude"  "mean_pb"
 
 ### Creating a grid for interpolation results
 
-We need to create a grid of points to store the interpolated values.
-First we create a bounding box, then use that the create our grid.
+We need to create a grid of points to store the interpolated values. First we create a bounding box, then use that the create our grid.
 
-``` r
+```{r grid, include = TRUE, echo = TRUE, message=FALSE}
+
 # make your bounding box using the soil data as the input
 bbox <- c(
   "xmin" = min(soil$longitude),
@@ -153,15 +102,12 @@ grid_plot <- ggplot() +
   theme_bw()
 
 grid_plot
+
 ```
 
-![](README_files/figure-gfm/grid-1.png)<!-- -->
+Now that our grid is ready, we can populate it with estimates for the soil concentraion. But first, we need to make it a spatial object and match the coordinate reference system to our soil coordinate system.
 
-Now that our grid is ready, we can populate it with estimates for the
-soil concentraion. But first, we need to make it a spatial object and
-match the coordinate reference system to our soil coordinate system.
-
-``` r
+```{r grid to spatial, include = TRUE, echo = TRUE, message=FALSE}
 # make it a spatial object
 grd_template_sf <- st_as_sf(grd_template, coords =  c("X", "Y"),
                             crs = "+proj=latlong +zone=18 +datum=WGS84")
@@ -178,23 +124,17 @@ grd_template_sf <- st_transform(grd_template_sf, "+proj=utm +zone=18 +datum=WGS8
 soil_sf <- st_as_sf(soil, coords =  c("longitude", "latitude"),
                          crs = "+proj=latlong +zone=18 +datum=WGS84")
 soil_sf <- st_transform(soil_sf, st_crs(grd_template_sf))
+
 ```
 
 ### Interpolation Methods
 
 #### Ordinary Kriging (OK) interpolation
 
-The first interpolation method that we are going to use is called
-ordinary Kriging (OK). The OK method estimates a spatial point that is
-unknown using the neighboring data and a variogram. Variograms are
-measures of the spatial variation in the data. If data are uniform over
-an area, then the variogram is a constant. If data vary over space,
-which is more likely, then the variogram must be estimated. We use the
-automap package to help us select our variogram, though other methods
-for getting the variogram exist. For more details, we recommend visiting
-<https://asdar-book.org/>.
+The first interpolation method that we are going to use is called ordinary Kriging (OK). The OK method estimates a spatial point that is unknown using the neighboring data and a variogram. Variograms are measures of the spatial variation in the data. If data are uniform over an area, then the variogram is a constant. If data vary over space, which is more likely, then the variogram must be estimated. We use the automap package to help us select our variogram, though other methods for getting the variogram exist. For more details, we recommend visiting [https://asdar-book.org/](https://asdar-book.org/).
 
-``` r
+```{r ok interpolate, include = TRUE, echo = TRUE, message=FALSE, results='hide', fig.keep='all', warning = FALSE}
+
 # remove nas
 soil_data <- soil_sf %>% filter(!is.na(mean_pb_soil))
 
@@ -235,43 +175,31 @@ ggplot()+
   geom_sf(data = fit_KRIG_sf, aes(color = pb_concentration))+
   geom_sf(data = syr, fill = NA, color = "black", linewidth = 1)+
   theme_bw()
-```
 
-![](README_files/figure-gfm/ok%20interpolate-1.png)<!-- -->
-
-``` r
 # assign a new name for use later
 ok_data <- fit_KRIG_sf %>%
   rename(ok_pb_conc = pb_concentration)
+
+
 ```
 
-Based on the ordinary Kriging results, there is some variation in the
-soil data but not very much. Likely, there might not be enough points to
-adequately predict the variogram from the data. In addition, Kriging
-methods may not do as well with skewed data. Our soil-Pb data are
-slightly skewed.
+Based on the ordinary Kriging results, there is some variation in the soil data but not very much. Likely, there might not be enough points to adequately predict the variogram from the data. In addition, Kriging methods may not do as well with skewed data. Our soil-Pb data are slightly skewed.
 
-``` r
+```{r historogram}
 hist(soil$mean_pb_soil)
+
 ```
 
-![](README_files/figure-gfm/historogram-1.png)<!-- -->
-
-Thus, we will conduct an additional interpolation method call the
-Triangular Irregular Network.
+Thus, we will conduct an additional interpolation method call the Triangular Irregular Network.
 
 #### Triangular Irregular Network (TIN) interpolation method
 
-The Triangular Irregular Network or TIN method. The TIN method takes a
-nonlinear approach to interpolation and assumes irregularity of the
-surface. Please consult:
+The Triangular Irregular Network or TIN method. The TIN method takes a nonlinear approach to interpolation and assumes irregularity of the surface. Please consult:
 
-LEE, J. Comparison of Existing Methods for Building Triangular Irregular
-Network, Models of Terrain from Grid Digital Elevation Models. Int. J.
-Geogr. Inf. Syst. 1991, 5 (3), 267–285.
-<https://doi.org/10.1080/02693799108927855> for more details.
+LEE, J. Comparison of Existing Methods for Building Triangular Irregular Network, Models of Terrain from Grid Digital Elevation Models. Int. J. Geogr. Inf. Syst. 1991, 5 (3), 267–285. [https://doi.org/10.1080/02693799108927855](https://doi.org/10.1080/02693799108927855) for more details.
 
-``` r
+```{r tin method, include = TRUE, echo = TRUE, message = FALSE}
+
 # remove nas
 soil_data <- soil %>% filter(!is.na(mean_pb_soil))
 
@@ -307,40 +235,24 @@ ggplot()+
   geom_sf(data = fit_TIN_sf, aes(color = pb_concentration))+
   geom_sf(data = syr, fill = NA, color = "black", linewidth = 1)+
   theme_bw()
-```
 
-![](README_files/figure-gfm/tin%20method-1.png)<!-- -->
-
-``` r
 # assign a new name for the tin data
 tin_sf <- fit_TIN_sf %>%
   rename(tin_pb_conc = pb_concentration)
+
 ```
 
-From the TIN results, we see more variation across the are that helps
-address the issues with skewness. Also, there are some areas with
-missing data because there were not enough points to fill those in
-particularly near the edges of the sampling area.
+From the TIN results, we see more variation across the are that helps address the issues with skewness. Also, there are some areas with missing data because there were not enough points to fill those in particularly near the edges of the sampling area.
 
 #### TIN and OK methods combined for highly skewed data
 
-Wu et al in 2010 proposed using a split data approach where skewed data
-would be split into two datasets, one normally distributed and one
-skewed dataset. This method assumes that both types of data come from
-different distributions and that modeling them together will result in
-less accuracy. The researcher would use the OK method on the normally
-distributed dataset and the TIN method on the skewed data. Then, the
-values for each separate interpolation would be summed to get a new
-result.
+Wu et al in 2010 proposed using a split data approach where skewed data would be split into two datasets, one normally distributed and one skewed dataset. This method assumes that both types of data come from different distributions and that modeling them together will result in less accuracy.
+The researcher would use the OK method on the normally distributed dataset and the TIN method on the skewed data. Then, the values for each separate interpolation would be summed to get a new result.
 
-While we found this method did not improve the interpolation results in
-our paper, we still tested the method. Based on Wu et al.(2010), the
-combined method appears to work best for extremely skewed data like what
-you might find for soil samples taken from a nearby smelter or mine or
-other source with large variance from the normal soil patterns. We
-demonstrate the split method below.
+While we found this method did not improve the interpolation results in our paper, we still tested the method. Based on Wu et al.(2010), the combined method appears to work best for extremely skewed data like what you might find for soil samples taken from a nearby smelter or mine or other source with large variance from the normal soil patterns. We demonstrate the split method below.
 
-``` r
+```{r prep split data}
+
 # calculate the interquartile reange
 # iqr
 iqr <- IQR(soil$mean_pb_soil, na.rm = TRUE)
@@ -367,10 +279,9 @@ set_A <- soil %>%
 # now we will run the ok on set a and the tin on set b. There should be just enough data to estimate the values
 ```
 
-Dataset A is the normally distributed data and for that, we conduct an
-OK interpolation.
+Dataset A is the normally distributed data and for that, we conduct an OK interpolation.
 
-``` r
+```{r ok on set a}
 # ok for set A
 # remove nas and filter for set a data
 soil_data <- soil_sf %>% 
@@ -386,11 +297,7 @@ fit_KRIG <- automap::autoKrige(
   .$krige_output %>%  # the function returns a complex object with lot's of metainfo
   as.data.frame() %>% # we keep only the data we are interested in
   dplyr::select(X = coords.x1, Y = coords.x2, Z = var1.pred) 
-```
 
-    ## [using ordinary kriging]
-
-``` r
 # adjust coordinates to utm meters
 fit_KRIG$X2 <- fit_KRIG$X * 1000
 fit_KRIG$Y2 <- fit_KRIG$Y * 1000
@@ -406,17 +313,7 @@ fit_KRIG <- fit_KRIG %>% dplyr::select(latitude, longitude, Z)
 colnames(fit_KRIG)[3] <- "pb_concentration"
 
 summary(fit_KRIG)
-```
 
-    ##     latitude         longitude      pb_concentration
-    ##  Min.   :4760469   Min.   :402507   Min.   :144.8   
-    ##  1st Qu.:4763108   1st Qu.:404719   1st Qu.:236.5   
-    ##  Median :4765718   Median :406878   Median :285.5   
-    ##  Mean   :4765718   Mean   :406878   Mean   :286.1   
-    ##  3rd Qu.:4768327   3rd Qu.:409036   3rd Qu.:345.0   
-    ##  Max.   :4770969   Max.   :411242   Max.   :396.5
-
-``` r
 # change it to spatial for mapping
 fit_KRIG_sf <- st_as_sf(fit_KRIG, coords =  c("longitude", "latitude"),
                         crs = "+proj=utm +zone=18 +datum=WGS84")
@@ -430,12 +327,10 @@ ggplot()+
   theme_bw()
 ```
 
-![](README_files/figure-gfm/ok%20on%20set%20a-1.png)<!-- -->
+Dataset B is the more skewed data. Our data only has 3 points for this analysis, but there should be enought to get a crude TIN estimate.
 
-Dataset B is the more skewed data. Our data only has 3 points for this
-analysis, but there should be enought to get a crude TIN estimate.
+```{r tin for set b}
 
-``` r
 # tin for set b
 
 # remove nas and filter for set b observations
@@ -475,13 +370,12 @@ ggplot()+
   geom_sf(data = fit_TIN_sf, aes(color = pb_concentration))+
   geom_sf(data = syr, fill = NA, color = "black", linewidth = 1)+
   theme_bw()
-```
 
-![](README_files/figure-gfm/tin%20for%20set%20b-1.png)<!-- -->
+```
 
 Now we combine the two separate datasets together using the sum.
 
-``` r
+```{r comeine the tin and ok}
 # now we combine the datasets
 colnames(fit_KRIG)[3] <- "pb_ok_conc"
 colnames(fit_TIN)[3] <- "pb_tin_conc"
@@ -498,13 +392,10 @@ ok_tin_data <- ok_tin_data %>%
 
 #### Compare methods to find the most accurate approach
 
-We have three separate approaches to the interpolation method providing
-three different estimates. We can compare the interpolated results to
-the original sampled data using the RMSE to see which one best
-represents the source data. This can inform our selection of a method
-for use in our correlations with the blood-Pb data.
+We have three separate approaches to the interpolation method providing three different estimates. We can compare the interpolated results to the original sampled data using the RMSE to see which one best represents the source data. This can inform our selection of a method for use in our correlations with the blood-Pb data.
 
-``` r
+```{r rmse}
+
 # compare the interpolated measures to the actual data to see which has the lower RMSE
 # generally, you would want to use the one with the lowest RMSE for your analysis
 
@@ -528,32 +419,19 @@ soil_near_final <- dplyr::left_join(soil_near, interpolate_sf, by = c("ID"))
 
 # RMSE
 sqrt(mean((soil_near_final$mean_pb_soil - soil_near_final$ok_pb_conc)^2, na.rm = TRUE)) # 202.4056
-```
-
-    ## [1] 202.4056
-
-``` r
 sqrt(mean((soil_near_final$mean_pb_soil - soil_near_final$tin_pb_conc)^2, na.rm = TRUE)) # 30.12213
-```
-
-    ## [1] 30.12213
-
-``` r
 sqrt(mean((soil_near_final$mean_pb_soil - soil_near_final$pb_conc_tin_plus_ok)^2, na.rm = TRUE)) # 220.3407
+
 ```
 
-    ## [1] 220.3407
-
-According to these results, the best interpolation method for our mean
-soil-Pb data would be the TIN method
+According to these results, the best interpolation method for our mean soil-Pb data would be the TIN method
 
 ### Assign the interpolated soil data to a participant from the cohort
 
-The last step for the analysis is to link the interpolated data to our
-cohort. We will do this using the `st_nearest` function to link the
-closest soil interpolation value to the closest mean soil-Pb value.
+The last step for the analysis is to link the interpolated data to our cohort. We will do this using the `st_nearest` function to link the closest soil interpolation value to the closest mean soil-Pb value.
 
-``` r
+```{r link to cohort}
+
 # link to the cohort data by spatial proximity
 
 # make the participant data spatial
@@ -582,22 +460,8 @@ ggplot(data = participant_near_final, aes(x = tin_pb_conc, y = mean_pb))+
        x = "Soil-Pb (TIN interpolation, mg/kg)",
        y = expression("Blood-Pb"~mu~"g/dL"))+
   theme(plot.title = element_text(hjust = 0.5))
+
 ```
 
-    ## `geom_smooth()` using formula = 'y ~ x'
 
-    ## Warning: Removed 3 rows containing non-finite outside the scale range
-    ## (`stat_smooth()`).
-
-    ## Warning: Removed 3 rows containing non-finite outside the scale range
-    ## (`stat_cor()`).
-
-    ## Warning: Removed 3 rows containing missing values or values outside the scale range
-    ## (`geom_point()`).
-
-![](README_files/figure-gfm/link%20to%20cohort-1.png)<!-- -->
-
-Based on our interpolation, there is a positive correlation, but it is
-not statistically significant. This is unsurprising since we are using
-aggregated data, so correlations that might exist at smaller scales are
-masked.
+Based on our interpolation, there is a positive correlation, but it is not statistically significant. This is unsurprising since we are using aggregated data, so correlations that might exist at smaller scales are masked.
